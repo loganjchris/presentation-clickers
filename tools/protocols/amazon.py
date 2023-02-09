@@ -1,4 +1,4 @@
-from protocol import Protocol
+from .protocol import Protocol
 from lib import common
 from collections import deque
 from threading import Thread
@@ -26,7 +26,7 @@ class AmazonBasics(Protocol):
     common.radio.enter_sniffer_mode(self.address)
 
     # Set the channels to {2..76..1}
-    common.channels = range(2, 76, 1)
+    common.channels = list(range(2, 76, 1))
 
     # Set the initial channel
     common.radio.set_channel(common.channels[0])

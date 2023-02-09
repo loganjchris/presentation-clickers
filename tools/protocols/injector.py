@@ -1,4 +1,4 @@
-from protocol import Protocol
+from .protocol import Protocol
 from collections import namedtuple
 import time
 
@@ -49,7 +49,7 @@ class Injector(object):
 
   def test(self):
     for x in range(0xff):
-      print("%04x"%x)
+      print(("%04x"%x))
       self.protocol.send_hid_event(mouse_b=0x80, test=x)
       # self.protocol.send_hid_event(mouse_b=x)
       self.protocol.send_hid_event(mouse_b=0)

@@ -1,4 +1,4 @@
-from protocol import Protocol
+from .protocol import Protocol
 from lib import common
 from threading import Thread
 from collections import deque
@@ -22,7 +22,7 @@ class Canon(Protocol):
     for x in range(256):
       b = lut.index(x>>4) | (lut.index(x&0xf)<< 4)
       self.LUT[x] = b
-      print(x, b)
+      print((x, b))
 
     self.seq = 0
 
@@ -34,7 +34,7 @@ class Canon(Protocol):
     common.radio.enter_promiscuous_mode_generic("\xAC\xC5\x05", common.RF_RATE_1M, payload_length=32)
 
     # Set the channels to {6..81..5}
-    common.channels = range(6, 81, 5)
+    common.channels = list(range(6, 81, 5))
 
     # Set the initial channel
     common.radio.set_channel(common.channels[0])

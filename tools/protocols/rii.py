@@ -1,4 +1,4 @@
-from protocol import Protocol
+from .protocol import Protocol
 from lib import common
 from collections import deque
 from threading import Thread

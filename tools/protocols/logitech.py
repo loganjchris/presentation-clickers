@@ -1,4 +1,4 @@
-from protocol import Protocol
+from .protocol import Protocol
 from lib import common
 from collections import deque
 from threading import Thread
@@ -30,7 +30,7 @@ class Logitech(Protocol):
     common.radio.enter_sniffer_mode(self.address)
 
     # Set the channels to {2..74..3}
-    common.channels = range(2, 77, 3)
+    common.channels = list(range(2, 77, 3))
 
     # Set the initial channel
     common.radio.set_channel(common.channels[0])
@@ -56,7 +56,7 @@ class Logitech(Protocol):
       payload = payload[0:modidx] + chr(modifiers^ord(ref[modidx])) + payload[modidx+1:]
     payload += chr((0x100-(sum(ord(c) for c in payload)&0xFF))&0xFF)
     self.tx_queue.append(payload)
-    print(':'.join("%02x"%ord(c) for c in payload))
+    print((':'.join("%02x"%ord(c) for c in payload)))
 
 
   # Enter injection mode
